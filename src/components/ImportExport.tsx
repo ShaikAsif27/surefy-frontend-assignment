@@ -27,7 +27,7 @@ export default function ImportExport() {
     Papa.parse(f, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
+      complete: (results: Papa.ParseResult<any>) => {
         const parsed = results.data as any[];
         const valid: Row[] = [];
         const errors: string[] = [];
@@ -54,7 +54,7 @@ export default function ImportExport() {
           alert(`Imported ${valid.length} row(s).`);
         }
       },
-      error: (err) => {
+      error: (err: Papa.ParseError) => {
         alert('CSV parse error: ' + err.message);
       }
     });
